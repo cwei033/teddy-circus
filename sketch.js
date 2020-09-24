@@ -22,6 +22,7 @@ let menu = [0, 11];
 let titleFont;
 let gameStart = false;
 let menuDisappear = false;
+let sketchStarted = false;
 
 function preload() {
   titleFont = loadFont('FrederickatheGreat-Regular.ttf');
@@ -51,16 +52,21 @@ function setup() {
   for (let i = 0; i < 11; i++) {
     menu[i] = new Stripe(column[i], 'rgba(223, 47, 2, .9)', 2);
   }
+  createButton("Start").mousePressed(startSketch);
 
+}
+
+function startSketch(){
   mic = new p5.AudioIn()
   mic.start();
 
-
+  sketchStarted = true;
 }
 
 function draw() {
   // console.log("mic:" + mic.getLevel());
   // console.log(mouseX);
+  if(sketchStarted){
 
   armSwingRight = map(mic.getLevel(1), 0, .3, 330, 295, true);
   armSwingLeft = map(mic.getLevel(1), 0, .3, 90, 42, true);
@@ -144,7 +150,7 @@ function draw() {
     drawBorder();
     drawMenu();
   }
-
+}
 }
 
 function mousePressed() {
