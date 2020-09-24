@@ -1,3 +1,4 @@
+'use strict'
 var armSwingRight;
 var armSwingLeft;
 var stringMoveUpRight;
