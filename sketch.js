@@ -34,7 +34,7 @@ function setup() {
   noStroke();
 
   for (let i = 0; i < 15; i++) {
-    balloon[i] = new Balloon(random(width), random(height*.85, height*1.7), color[i], S1, 1);
+    balloon[i] = new Balloon(random(width), random(height * .85, height * 1.7), color[i], S1, 1);
   }
 
   for (let i = 0; i < 11; i++) {
@@ -56,7 +56,7 @@ function setup() {
 
 }
 
-function startSketch(){
+function startSketch() {
   mic = new p5.AudioIn()
   mic.start();
 
@@ -66,91 +66,91 @@ function startSketch(){
 function draw() {
   // console.log("mic:" + mic.getLevel());
   // console.log(mouseX);
-  if(sketchStarted){
+  if (sketchStarted) {
 
-  armSwingRight = map(mic.getLevel(1), 0, .3, 330, 295, true);
-  armSwingLeft = map(mic.getLevel(1), 0, .3, 90, 42, true);
-  stringMoveUpRight = map(mic.getLevel(1), 0, .3, 116, 100, true);
-  stringMoveUpLeft = map(mic.getLevel(1), 0, .3, 80, 120, true);
-  // bowMove = map(mic.getLevel(), 0, .1, 0, 10, true);
-  // controllerMove = map(mic.getLevel(), 0, .1, 5, -15, true);
+    armSwingRight = map(mic.getLevel(1), 0, .3, 330, 295, true);
+    armSwingLeft = map(mic.getLevel(1), 0, .3, 90, 42, true);
+    stringMoveUpRight = map(mic.getLevel(1), 0, .3, 116, 100, true);
+    stringMoveUpLeft = map(mic.getLevel(1), 0, .3, 80, 120, true);
+    // bowMove = map(mic.getLevel(), 0, .1, 0, 10, true);
+    // controllerMove = map(mic.getLevel(), 0, .1, 5, -15, true);
 
-  background('#CFC096');
+    background('#CFC096');
 
-  if (gameStart === true) {
-    for (let i = 0; i < 11; i++) {
-      stripe[i].display();
-      stripe[i].move();
+    if (gameStart === true) {
+      for (let i = 0; i < 11; i++) {
+        stripe[i].display();
+        stripe[i].move();
 
-      if (stripe[i].x >= width) {
-        stripe[i].x = -40;
+        if (stripe[i].x >= width) {
+          stripe[i].x = -40;
+        }
+      }
+
+      for (let i = 0; i < 15; i++) {
+        balloon[i].display();
+        balloon[i].move();
+
+        if (balloon[i].y < -height * .45) {
+          balloon[i].color = color[i];
+          balloon[i].string = 250;
+          balloon[i].x = random(width);
+          balloon[i].y = random(height * .85, height * 1.7);
+        }
       }
     }
 
-    for (let i = 0; i < 15; i++) {
-      balloon[i].display();
-      balloon[i].move();
-
-      if (balloon[i].y < -height * .45) {
-        balloon[i].color = color[i];
-        balloon[i].string = 250;
-        balloon[i].x = random(width);
-        balloon[i].y = random(height*.85, height*1.7);
-      }
+    drawFence();
+    for (let i = 0; i < 8; i++) {
+      dots[i].display();
     }
-  }
 
-  drawFence();
-  for (let i = 0; i < 8; i++) {
-    dots[i].display();
-  }
+    drawStage();
+    drawLegs();
+    drawRightString(stringMoveUpRight);
+    drawLeftString(stringMoveUpLeft);
+    // drawController(controllerMove);
+    drawLeftArm(armSwingLeft);
+    drawRightArm(armSwingRight);
+    drawBody();
+    drawCounter();
+    drawHead();
+    drawFace(eyeMovement);
+    drawBowtie(width * .5, height * .51);
+    drawConfettiButton();
 
-  drawStage();
-  drawLegs();
-  drawRightString(stringMoveUpRight);
-  drawLeftString(stringMoveUpLeft);
-  // drawController(controllerMove);
-  drawLeftArm(armSwingLeft);
-  drawRightArm(armSwingRight);
-  drawBody();
-  drawCounter();
-  drawHead();
-  drawFace(eyeMovement);
-  drawBowtie(width * .5, height * .51);
-  drawConfettiButton();
+    if (confettiStart == true) {
+      for (let i = 0; i < 65; i++) {
+        confetti[i].display();
+        confetti[i].move();
 
-  if (confettiStart == true) {
-    for (let i = 0; i < 65; i++) {
-      confetti[i].display();
-      confetti[i].move();
-
-      if (confetti[i].y > height * 1.05) {
-        confetti[i].y = height * -.05;
-        confetti[i].x = random(width);
-      }
-    }
-  }
-
-  if (eyeStart == true) {
-    eyeMovement = mouseX
-  }
-
-  if (menuDisappear == false) {
-    drawMenuBg();
-
-    for (let i = 0; i < 11; i++) {
-      menu[i].display();
-      menu[i].move();
-
-      if (menu[i].x >= width) {
-        menu[i].x = -40;
+        if (confetti[i].y > height * 1.05) {
+          confetti[i].y = height * -.05;
+          confetti[i].x = random(width);
+        }
       }
     }
 
-    drawBorder();
-    drawMenu();
+    if (eyeStart == true) {
+      eyeMovement = mouseX
+    }
+
+    if (menuDisappear == false) {
+      drawMenuBg();
+
+      for (let i = 0; i < 11; i++) {
+        menu[i].display();
+        menu[i].move();
+
+        if (menu[i].x >= width) {
+          menu[i].x = -40;
+        }
+      }
+
+      drawBorder();
+      drawMenu();
+    }
   }
-}
 }
 
 function mousePressed() {
