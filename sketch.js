@@ -452,15 +452,15 @@ function drawMenu() {
   rect(width * .5, height * .5, width * .745, height * .245, width * .025);
   textAlign(CENTER);
   fill(255);
-  textFont(titleFont, 40);
+  textSize(35);
   text('*Teddy Circus*', width * .5, height * .49);
-  textFont(titleFont, 10);
+  textSize(10);
   text('[pop the balloons!]', width * .68, height * .52);
-  textFont(titleFont, 20);
+  textSize(20);
   fill('#fffd99');
   text('play', width * .5, height * .569);
   if (mouseX > width * .38 && mouseX < width * .62 && mouseY > height * .507 && mouseY < height * .607) {
-    textFont(titleFont, 20);
+    textSize(20);
     text('>', width * .43, height * .569);
   }
   pop();
