@@ -24,6 +24,7 @@ let titleFont;
 let gameStart = false;
 let menuDisappear = false;
 let sketchStarted = false;
+let button;
 
 function preload() {
   titleFont = loadFont('FrederickatheGreat-Regular.ttf');
@@ -53,8 +54,9 @@ function setup() {
   for (let i = 0; i < 11; i++) {
     menu[i] = new Stripe(column[i], 'rgba(223, 47, 2, .9)', 2);
   }
-  createButton("Start").mousePressed(startSketch);
-
+  button = createButton("Start")
+  button.mousePressed(startSketch);
+  button.parent('startButton');
 }
 
 function startSketch() {

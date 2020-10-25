@@ -1,7 +1,28 @@
 html, body {
-  margin: 0;
-  padding: 0;
+  height: 100%;
+  background-color: #242424;
+
 }
+
+body {
+  margin: 0;
+  display: flex;
+
+  /* This centers our sketch horizontally. */
+  justify-content: center;
+
+  /* This centers our sketch vertically. */
+  align-items: center;
+}
+
 canvas {
   display: block;
+  border: 5px solid white;
+  /* margin: auto auto; */
+}
+
+#startButton {
+  position: absolute;
+  height: 50%;
+
 }
